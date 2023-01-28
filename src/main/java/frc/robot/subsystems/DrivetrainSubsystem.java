@@ -18,15 +18,13 @@ import edu.wpi.first.wpilibj2.command.SubsystemBase;
 
 public class DrivetrainSubsystem extends SubsystemBase {
   
-  VictorSP leftMotor1 = new VictorSP(0);
-  VictorSP leftMotor2 = new VictorSP(0);
-  VictorSP leftMotor3 = new VictorSP(0);
+  VictorSP leftMotor1 = new VictorSP(1);
+  VictorSP leftMotor2 = new VictorSP(2);
   VictorSP rightMotor1 = new VictorSP(0);
-  VictorSP rightMotor2 = new VictorSP(0);
-  VictorSP rightMotor3 = new VictorSP(0);
+  VictorSP rightMotor2 = new VictorSP(3);
 
-  MotorControllerGroup leftControllerGroup = new MotorControllerGroup(leftMotor1, leftMotor2, leftMotor3);
-  MotorControllerGroup rightControllerGroup = new MotorControllerGroup(rightMotor1, rightMotor2, rightMotor3);
+  MotorControllerGroup leftControllerGroup = new MotorControllerGroup(leftMotor1, leftMotor2);
+  MotorControllerGroup rightControllerGroup = new MotorControllerGroup(rightMotor1, rightMotor2);
   
   DifferentialDrive differentialDrive = new DifferentialDrive(leftControllerGroup, rightControllerGroup);
 
