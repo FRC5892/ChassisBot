@@ -14,7 +14,7 @@ import edu.wpi.first.wpilibj2.command.CommandBase;
 public class DriveWithJoystickCommand extends CommandBase {
   @SuppressWarnings({"PMD.UnusedPrivateField", "PMD.SingularField"})
   private final DrivetrainSubsystem drivetrainSubsystem;
-  private SlewRateLimiter iamverycool;
+  private SlewRateLimiter slewRateLimit;
 
   /**
    * Creates a new ExampleCommand.
@@ -25,7 +25,7 @@ public class DriveWithJoystickCommand extends CommandBase {
     this.drivetrainSubsystem = drivetrainSubsystem;
     // Use addRequirements() here to declare subsystem dependencies.
     addRequirements(drivetrainSubsystem);
-    iamverycool = new SlewRateLimiter(1.9);
+    slewRateLimit = new SlewRateLimiter(1.9);
 
   }
 
@@ -40,7 +40,7 @@ public class DriveWithJoystickCommand extends CommandBase {
   public void execute() {
     double forwardSpeed = RobotContainer.joystick.getLeftY();
     double turningSpeed = RobotContainer.joystick.getRightX();
-    drivetrainSubsystem.arcadeDrive(iamverycool.calculate(forwardSpeed), turningSpeed);
+    drivetrainSubsystem.arcadeDrive(slewRateLimit.calculate(forwardSpeed), turningSpeed);
   }
 
   // Called once the command ends or is interrupted.
