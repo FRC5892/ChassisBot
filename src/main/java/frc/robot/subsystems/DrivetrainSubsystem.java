@@ -4,6 +4,8 @@
 
 package frc.robot.subsystems;
 
+import edu.wpi.first.wpilibj.Encoder;
+
 //import java.lang.invoke.ClassSpecializer.Factory;
 
 //import com.revrobotics.CANSparkMax;
@@ -15,6 +17,7 @@ import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
 import edu.wpi.first.wpilibj.motorcontrol.VictorSP;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 //import frc.robot.Constants;
+import frc.robot.Constants;
 
 public class DrivetrainSubsystem extends SubsystemBase {
   
@@ -22,6 +25,20 @@ public class DrivetrainSubsystem extends SubsystemBase {
   VictorSP leftMotor2 = new VictorSP(2);
   VictorSP rightMotor1 = new VictorSP(0);
   VictorSP rightMotor2 = new VictorSP(3);
+
+    // The left-side drive encoder
+  private final Encoder m_leftEncoder =
+  new Encoder(
+      Constants.encoderPorts.kLeftEncoderPorts1,
+      Constants.encoderPorts.kLeftEncoderPorts2,
+      Constants.encoderPorts.kLeftEncoderReversed);
+
+// The right-side drive encoder
+private final Encoder m_rightEncoder =
+    new Encoder(
+        Constants.encoderPorts.kRightEncoderPorts1,
+        Constants.encoderPorts.kRightEncoderPorts2,
+        Constants.encoderPorts.kRightEncoderReversed);
 
   MotorControllerGroup leftControllerGroup = new MotorControllerGroup(leftMotor1, leftMotor2);
   MotorControllerGroup rightControllerGroup = new MotorControllerGroup(rightMotor1, rightMotor2);
