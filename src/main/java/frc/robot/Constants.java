@@ -18,12 +18,10 @@ public final class Constants {
 
         public static final class DriveTrainConstants{
 
-            public static final int left1CANID = 1;
-            public static final int left2CANID = 2;
-            public static final int left3CANID = 3;
-            public static final int right1CANID = 4;
-            public static final int right2CANID = 5;
-            public static final int right3CANID = 6;
+            public static final int LEFT_1_DRIVETRAIN_MOTOR_PORT = 1;
+            public static final int LEFT_2_DRIVETRAIN_MOTOR_PORT = 2;
+            public static final int RIGHT_1_DRIVETRAIN_MOTOR_PORT = 0;
+            public static final int RIGHT_2_DRIVETRAIN_MOTOR_PORT = 3;
             
 
         }
@@ -37,4 +35,26 @@ public final class Constants {
             public static DigitalSource kRightEncoderReversed;
         }
 
+
+        public static final class ArmConstants {
+            public static final int LEFT_INTAKE_MOTOR_PORT = 4;
+            public static final int RIGHT_INTAKE_MOTOR_PORT = 5;
+            public static final int[] INTAKE_POSITION_SOLENOID_PORT = new int[] { 1, 2};
+            public static final int[] EXTEND_SOLENOID_PORT = new int[] { 3, 4};
+            public static final int ARM_MOTOR_PORT = 6;
+            public static final int ARM_ENCODER = 7;
+        
+            public static final double ARM_MAX_HEIGHT = 5.5;
+            public static final int[] ARM_PIDF = new int [] {0, 0, 0};
+        
+        
+            public static final double INTAKE_SPEED = 0;
+            public static final double ARM_MOTOR_SPEED = 0;
+            public static final double WITH_GAMEPIECE_SPEED = 0;
+            public static final int SPIT_OUT_SPEED = 0;
+            public static final double PID_POSITION_TOLERANCE = 0;
+            public static final double ARM_SETPOINT = 0;
+            public static final double ARM_SETPOINT_UP = 0;
+            public static final double ARM_SETPOINT_DOWN = 0;
+          }
 }

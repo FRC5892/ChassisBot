@@ -4,13 +4,22 @@
 
 package frc.robot;
 
+import edu.wpi.first.wpilibj.Compressor;
 import edu.wpi.first.wpilibj.GenericHID;
+import edu.wpi.first.wpilibj.PneumaticsModuleType;
 //import edu.wpi.first.wpilibj.Joystick;
 import edu.wpi.first.wpilibj.XboxController;
 //import edu.wpi.first.wpilibj.simulation.XboxControllerSim;
 import frc.robot.commands.DriveWithJoystickCommand;
+import frc.robot.commands.Intake.RetractIntake;
+import frc.robot.commands.Intake.RunIntakeRollars;
+import frc.robot.commands.Scoring.ScoreLow;
+import frc.robot.commands.Scoring.ScoreMid;
+import frc.robot.subsystems.Arm;
 import frc.robot.subsystems.DrivetrainSubsystem;
+import frc.robot.subsystems.Intake;
 import edu.wpi.first.wpilibj2.command.Command;
+import edu.wpi.first.wpilibj2.command.button.JoystickButton;
 
 /**
  * This class is where the bulk of the robot should be declared. Since Command-based is a
@@ -20,16 +29,39 @@ import edu.wpi.first.wpilibj2.command.Command;
  */
 public class RobotContainer {
   // The robot's subsystems and commands are defined here...
-  private final DrivetrainSubsystem drivetrainSubsystem = new DrivetrainSubsystem();
+  //Controllers
+  public static XboxController driver = new XboxController(0);
 
+  //Compressors
+  private Compressor compressor;
+
+  //Drive Controls
+  private final JoystickButton runIntakeButton = new JoystickButton(driver, XboxController.Button.kX.value);
+  private final JoystickButton retractIntakeButton = new JoystickButton(driver, XboxController.Button.kB.value);
+  private final JoystickButton scoreMidButton = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
+  private final JoystickButton scoreLowButton = new JoystickButton(driver, XboxController.Button.kBack.value);
+
+  //Subsystems
+  private final Arm arm = new Arm();
+  private final Intake intake = new Intake();
+  private final DrivetrainSubsystem drivetrainSubsystem = new DrivetrainSubsystem();
+    
+  //Commands
+  private final RunIntakeRollars runIntakeRollars = new RunIntakeRollars(intake, arm);
+  private final RetractIntake retractIntake = new RetractIntake(arm);
+  private final ScoreMid scoreMid = new ScoreMid(intake, arm);
+  private final ScoreLow scoreLow = new ScoreLow(intake, arm);
   private final DriveWithJoystickCommand driveWithJoystickCommand = new DriveWithJoystickCommand(drivetrainSubsystem);
 
-  public static XboxController joystick = new XboxController(0);
-  
+
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
   public RobotContainer() {
+    compressor = new Compressor(1, PneumaticsModuleType.REVPH);
+    compressor.enableDigital();
+
     // Configure the button bindings
     configureButtonBindings();
+    
     drivetrainSubsystem.setDefaultCommand(driveWithJoystickCommand);
   }
 
@@ -39,7 +71,14 @@ public class RobotContainer {
    * edu.wpi.first.wpilibj.Joystick} or {@link XboxController}), and then passing it to a {@link
    * edu.wpi.first.wpilibj2.command.button.JoystickButton}.
    */
-  private void configureButtonBindings() {}
+  private void configureButtonBindings() {
+    /* Driver Buttons */
+    retractIntakeButton.onTrue(retractIntake);
+    scoreMidButton.onTrue(scoreMid);
+    scoreLowButton.onTrue(scoreLow);
+    runIntakeButton.onTrue(runIntakeRollars);
+    retractIntakeButton.onTrue(retractIntake);
+}
 
   /**
    * Use this to pass the autonomous command to the main {@link Robot} class.
