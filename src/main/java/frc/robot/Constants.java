@@ -57,4 +57,10 @@ public final class Constants {
             public static final double ARM_SETPOINT_UP = 0;
             public static final double ARM_SETPOINT_DOWN = 0;
           }
+
+         public static class LED {
+            public static int ledPort = 9;
+            public static int ledLength = 60;
+
+        }
 }
