@@ -13,6 +13,8 @@ import edu.wpi.first.wpilibj.XboxController;
 import frc.robot.commands.DriveWithJoystickCommand;
 import frc.robot.commands.Intake.RetractIntake;
 import frc.robot.commands.Intake.RunIntakeRollars;
+import frc.robot.commands.LED.PurpleLights;
+import frc.robot.commands.LED.YellowLights;
 import frc.robot.commands.Scoring.ScoreLow;
 import frc.robot.commands.Scoring.ScoreMid;
 import frc.robot.subsystems.Arm;
@@ -41,6 +43,9 @@ public class RobotContainer {
   private final JoystickButton retractIntakeButton = new JoystickButton(driver, XboxController.Button.kB.value);
   private final JoystickButton scoreMidButton = new JoystickButton(driver, XboxController.Button.kRightBumper.value);
   private final JoystickButton scoreLowButton = new JoystickButton(driver, XboxController.Button.kBack.value);
+  private final JoystickButton purpleLightButton = new JoystickButton(driver, XboxController.Button.kY.value);
+  private final JoystickButton yellowLightButton = new JoystickButton(driver, XboxController.Button.kA.value);
+
 
   //Subsystems
   private final Arm arm = new Arm();
@@ -53,6 +58,8 @@ public class RobotContainer {
   private final ScoreMid scoreMid = new ScoreMid(intake, arm);
   private final ScoreLow scoreLow = new ScoreLow(intake, arm);
   private final DriveWithJoystickCommand driveWithJoystickCommand = new DriveWithJoystickCommand(drivetrainSubsystem);
+  private final PurpleLights purpleLights = new PurpleLights();
+  private final YellowLights yellowLights = new YellowLights();
 
 
   /** The container for the robot. Contains subsystems, OI devices, and commands. */
@@ -79,6 +86,8 @@ public class RobotContainer {
     scoreLowButton.onTrue(scoreLow);
     runIntakeButton.onTrue(runIntakeRollars);
     retractIntakeButton.onTrue(retractIntake);
+    yellowLightButton.onTrue(yellowLights);
+    purpleLightButton.onTrue(purpleLights);
 }
 
   /**
