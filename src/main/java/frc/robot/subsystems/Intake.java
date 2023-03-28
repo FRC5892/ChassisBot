@@ -4,33 +4,14 @@
 
 package frc.robot.subsystems;
 
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMax.IdleMode;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
-
 import edu.wpi.first.wpilibj.motorcontrol.MotorControllerGroup;
+import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj2.command.SubsystemBase;
 import frc.robot.Constants;
 
 public class Intake extends SubsystemBase {
-  private CANSparkMax leftMotor(int motorID, boolean inverted) {
-    CANSparkMax leftMotor = new CANSparkMax(motorID, MotorType.kBrushed);
-		leftMotor.restoreFactoryDefaults();
-		leftMotor.setInverted(inverted);
-		leftMotor.setIdleMode(IdleMode.kBrake);
-    return leftMotor;
-  }
-
-  private CANSparkMax rightMotor(int motorID, boolean inverted) {
-  CANSparkMax rightMotor = new CANSparkMax(motorID, MotorType.kBrushed);
-  rightMotor.restoreFactoryDefaults();
-  rightMotor.setInverted(inverted);
-  rightMotor.setIdleMode(IdleMode.kBrake);
-  return rightMotor;
-  }
-
-  private CANSparkMax leftMotor = leftMotor(Constants.ArmConstants.LEFT_INTAKE_MOTOR_PORT, false);
-  private CANSparkMax rightMotor = rightMotor(Constants.ArmConstants.RIGHT_INTAKE_MOTOR_PORT, false);
+  Spark leftMotor = new Spark(Constants.ArmConstants.LEFT_INTAKE_MOTOR_PORT);
+  Spark rightMotor = new Spark(Constants.ArmConstants.RIGHT_INTAKE_MOTOR_PORT);
 
   private MotorControllerGroup intakeMotors = new MotorControllerGroup(leftMotor, rightMotor);
 

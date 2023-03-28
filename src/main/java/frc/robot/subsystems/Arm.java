@@ -6,10 +6,8 @@ package frc.robot.subsystems;
 
 import edu.wpi.first.wpilibj.Timer;
 import edu.wpi.first.wpilibj.DoubleSolenoid.Value;
+import edu.wpi.first.wpilibj.motorcontrol.Spark;
 import edu.wpi.first.wpilibj.motorcontrol.VictorSP;
-
-import com.revrobotics.CANSparkMax;
-import com.revrobotics.CANSparkMaxLowLevel.MotorType;
 
 import edu.wpi.first.math.controller.PIDController;
 import edu.wpi.first.wpilibj.DoubleSolenoid;
@@ -20,7 +18,7 @@ import frc.robot.Constants;
 public class Arm extends SubsystemBase {
   private DoubleSolenoid positionSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.ArmConstants.INTAKE_POSITION_SOLENOID_PORT[0], Constants.ArmConstants.INTAKE_POSITION_SOLENOID_PORT[1]);
   private DoubleSolenoid extendSolenoid = new DoubleSolenoid(PneumaticsModuleType.CTREPCM, Constants.ArmConstants.EXTEND_SOLENOID_PORT[0], Constants.ArmConstants.EXTEND_SOLENOID_PORT[1]);
-  private CANSparkMax armMotor = new CANSparkMax(Constants.ArmConstants.ARM_MOTOR_PORT, MotorType.kBrushed);
+  private Spark armMotor = new Spark(Constants.ArmConstants.ARM_MOTOR_PORT);
   
   private VictorSP armEncoder = new VictorSP(Constants.ArmConstants.ARM_ENCODER);
   private Timer timer;
@@ -75,7 +73,8 @@ public class Arm extends SubsystemBase {
 
   /* return values */
   public Value returnClawPosition() {
-    return positionSolenoid.get();
+    return null;
+    //return positionSolenoid.get();
   }
 
   public Value returnExtendPistonValue() {

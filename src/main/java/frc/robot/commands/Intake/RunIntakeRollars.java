@@ -21,7 +21,7 @@ public class RunIntakeRollars extends CommandBase {
     this.intake = intake;
     this.arm = arm;
     // Use addRequirements() here to declare subsystem dependencies.
-    addRequirements(arm);
+    //addRequirements(arm);
   }
 
   // Called when the command is initially scheduled.
@@ -37,7 +37,7 @@ public class RunIntakeRollars extends CommandBase {
     boolean isTriggerActive = RobotContainer.driver.getRightTriggerAxis() > 0.05;
     boolean isClawDeployed = arm.returnClawPosition() == Value.kForward;
 
-    if (!isClawDeployed && isTriggerActive) {
+    if (/*!isClawDeployed && */isTriggerActive) {
       arm.setClawPosition(Value.kForward);
     }
 
