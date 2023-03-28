@@ -4,15 +4,21 @@
 
 package frc.robot.commands.LED;
 
+import edu.wpi.first.wpilibj.AddressableLED;
+import edu.wpi.first.wpilibj.AddressableLEDBuffer;
 import edu.wpi.first.wpilibj2.command.CommandBase;
 import frc.robot.Robot;
 
 public class PurpleLights extends CommandBase {
-  private Robot led;
+  private AddressableLED m_led;
+  private AddressableLEDBuffer m_ledBuffer;
+  //ligAddressableLED go boom
   private boolean finish;
 
-  /** Creates a new PurpleLights. */
-  public PurpleLights() {
+  /** Creates a new YellowLights. */
+  public PurpleLights(AddressableLED m_led, AddressableLEDBuffer m_ledBuffer) {
+    this.m_led = m_led;
+    this.m_ledBuffer = m_ledBuffer;
     // Use addRequirements() here to declare subsystem dependencies.
   }
 
@@ -25,12 +31,12 @@ public class PurpleLights extends CommandBase {
   // Called every time the scheduler runs while the command is scheduled.
   @Override
   public void execute() {
-    for (var i = 0; i < led.m_ledBuffer.getLength(); i++) {
+    for (var i = 0; i < m_ledBuffer.getLength(); i++) {
       // Sets the specified LED to the RGB values for red
-      led.m_ledBuffer.setRGB(i, 175, 35, 255);
+      m_ledBuffer.setRGB(i, 175, 35, 155);
     }
 
-    led.m_led.setData(led.m_ledBuffer);
+    m_led.setData(m_ledBuffer);
     finish = true;
   }
 

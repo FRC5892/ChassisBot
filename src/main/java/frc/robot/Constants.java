@@ -37,8 +37,8 @@ public final class Constants {
 
 
         public static final class ArmConstants {
-            public static final int LEFT_INTAKE_MOTOR_PORT = 4;
-            public static final int RIGHT_INTAKE_MOTOR_PORT = 5;
+            public static final int LEFT_INTAKE_MOTOR_PORT = 8;
+            public static final int RIGHT_INTAKE_MOTOR_PORT = 9;
             public static final int[] INTAKE_POSITION_SOLENOID_PORT = new int[] { 1, 2};
             public static final int[] EXTEND_SOLENOID_PORT = new int[] { 3, 4};
             public static final int ARM_MOTOR_PORT = 6;
@@ -59,7 +59,7 @@ public final class Constants {
           }
 
          public static class LED {
-            public static int ledPort = 9;
+            public static int ledPort = 4;
             public static int ledLength = 60;
 
         }
